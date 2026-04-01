@@ -58,6 +58,32 @@ function Normalize-Body {
     return $body.Trim() + "`n"
 }
 
+function Assert-PublicDocPath {
+    param([string]$RelativePath)
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath)) {
+        throw "dest path is empty"
+    }
+
+    if ($RelativePath -match " ") {
+        throw "dest path must not contain ASCII spaces: $RelativePath"
+    }
+}
+
+function Format-MarkdownTarget {
+    param([string]$Target)
+
+    if ([string]::IsNullOrWhiteSpace($Target)) {
+        return $Target
+    }
+
+    if ($Target -match "^(https?:|mailto:|#)") {
+        return $Target
+    }
+
+    return ($Target -replace " ", "%20")
+}
+
 function Render-Bullets {
     param([object[]]$Items)
 
@@ -65,6 +91,8 @@ function Render-Bullets {
 }
 
 foreach ($entry in $manifest) {
+    Assert-PublicDocPath -RelativePath $entry.dest
+
     $sourcePath = Join-Path $sourceRoot $entry.source
     if (-not (Test-Path $sourcePath)) {
         throw "source article not found: $sourcePath"
@@ -77,7 +105,8 @@ foreach ($entry in $manifest) {
     }
 
     $body = Normalize-Body -Text (Get-Content -LiteralPath $sourcePath -Raw -Encoding UTF8)
-    $selfLink = "./" + (Split-Path -Leaf $destPath)
+    $selfLink = Format-MarkdownTarget -Target ("./" + (Split-Path -Leaf $destPath))
+    $demoLink = Format-MarkdownTarget -Target $entry.demo_link
 
     $header = (
         @(
@@ -92,7 +121,7 @@ foreach ($entry in $manifest) {
             "**一句话摘要**：$($entry.summary)",
             "**适合谁看**：$($entry.audience)",
             "**前置知识**：$((($entry.prerequisites) -join '、'))",
-            "**对应 Demo**：[$($entry.demo_label)]($($entry.demo_link))",
+            "**对应 Demo**：[$($entry.demo_label)]($demoLink)",
             "",
             "**面试可讲点**",
             (Render-Bullets -Items $entry.interview_points),
@@ -125,14 +154,14 @@ $interviewDoc = (
     @(
         '# Eino 面试速览',
         '',
-        '这个仓库的文章不只是阅读材料，也可以直接拿来组织面试表达。最稳的讲法不是“我看过哪些 API”，而是“我怎么把 Eino 拆成四层能力”。',
+        '这个仓库既是中文 Eino 学习入口，也可以直接拿来组织面试表达。最稳的讲法不是“我看过哪些 API”，而是“我怎么把 Eino 拆成四层能力”。',
         '',
         '## 四层表达法',
         '',
         '1. `模型调用层`：用 [`ChatModel 与 Message`](02-入门必学/01-ChatModel和Message.md) 解释模型能力如何被稳定接入。',
         '2. `组件协议层`：用 [`ChatTemplate`](03-组件核心/02-ChatTemplate为什么不是字符串拼接.md)、[`ToolsNode`](03-组件核心/04-为什么很多人会写Tool，却没真正看懂ToolsNode.md)、[`Retriever`](03-组件核心/07-为什么很多人会用Retriever，却没真正看懂Retrieve.md) 解释输入输出协议。',
         '3. `编排运行时层`：用 [`Chain / Graph`](04-编排进阶/01-一文讲透编排（Chain与Graph）.md) 和 [`Workflow`](04-编排进阶/02-既然有了Chain、Graph，为何还需要Workflow.md) 解释复杂链路如何建模。',
-        '4. `Agent 抽象层`：用 [`什么是 Eino ADK`](05-ADK体系/01-什么是Eino ADK？.md) 和 [`为什么一定要有 Agent 抽象`](05-ADK体系/02-为什么一定要有Agent这层抽象.md) 解释为什么 Agent 不只是 Prompt 包装器。',
+        '4. `Agent 抽象层`：用 [`什么是 Eino ADK`](05-ADK体系/01-什么是EinoADK？.md) 和 [`为什么一定要有 Agent 抽象`](05-ADK体系/02-为什么一定要有Agent这层抽象.md) 解释为什么 Agent 不只是 Prompt 包装器。',
         '',
         '## 推荐回答框架',
         '',
@@ -167,12 +196,27 @@ $repoSettingsDoc = (
     @(
         '# 仓库发布设置',
         '',
-        '这些内容不能直接靠本地文件自动设置到 GitHub，但已经在这里固定下来，创建远端仓库时照着填即可。',
+        '这些内容不会自动从 README 同步到 GitHub，需要手动填写到仓库的 About 和设置面板中。这里把首发需要的内容固定下来，方便直接复制。',
+        '',
+        '## About 填写建议',
+        '',
+        '- Description：`中文 CloudWeGo Eino 学习手册，含系统教程、可运行 Go 示例和面试表达框架。`',
+        '- Website：`https://blog.csdn.net/2302_80067378/category_13132166.html`',
+        '- Topics：',
+        '  - `go`',
+        '  - `golang`',
+        '  - `cloudwego`',
+        '  - `eino`',
+        '  - `ai-agent`',
+        '  - `llm`',
+        '  - `rag`',
+        '  - `workflow`',
+        '  - `tutorial`',
         '',
         '## 基本信息',
         '',
         '- 仓库名：`go-eino-handbook`',
-        '- 描述：`面向中文开发者的 CloudWeGo Eino 教程仓，含可运行 Go 示例和面试导向笔记。`',
+        '- 描述：`中文 CloudWeGo Eino 学习手册，含系统教程、可运行 Go 示例和面试表达框架。`',
         '- 主页：`https://blog.csdn.net/2302_80067378/category_13132166.html`',
         '- 默认分支：`main`',
         '- 许可证：`Apache-2.0`',
@@ -181,11 +225,13 @@ $repoSettingsDoc = (
         '',
         '- `go`',
         '- `golang`',
+        '- `cloudwego`',
         '- `eino`',
         '- `ai-agent`',
         '- `llm`',
         '- `rag`',
         '- `workflow`',
+        '- `tutorial`',
         '',
         '## Social Preview 文案',
         '',
@@ -212,6 +258,7 @@ $repoSettingsDoc = (
         '',
         '## Publish Checklist',
         '',
+        '- About 区的 Description、Website、Topics 已手动填写。',
         '- 仓库描述和 topics 填完。',
         '- README 首页渲染正常，文章数量写成 `19 篇正文 + 1 篇总纲`。',
         '- `docs/` 与 `examples/` 的相对链接点检一轮。',

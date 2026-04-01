@@ -1,6 +1,6 @@
 ﻿# AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser
 
-> GitHub 主文：[当前文章](./05-为什么很多人会用Document Loader，却没真正看懂Parser.md)
+> GitHub 主文：[当前文章](./05-为什么很多人会用DocumentLoader，却没真正看懂Parser.md)
 > CSDN 跳转：[AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser](https://zhumo.blog.csdn.net/article/details/159514239)
 > 官方文档：[Document Loader 使用说明](https://www.cloudwego.io/zh/docs/eino/core_modules/components/document_loader_guide/)
 >
@@ -423,7 +423,7 @@ func (l *CustomLoader) Load(
 
 ## 发布说明
 
-- GitHub 主文：[AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser](./05-为什么很多人会用Document Loader，却没真正看懂Parser.md)
+- GitHub 主文：[AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser](./05-为什么很多人会用DocumentLoader，却没真正看懂Parser.md)
 - CSDN 跳转：[AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser](https://zhumo.blog.csdn.net/article/details/159514239)
 - 官方文档：[Document Loader 使用说明](https://www.cloudwego.io/zh/docs/eino/core_modules/components/document_loader_guide/)
 - 最新版以 GitHub 仓库为准。

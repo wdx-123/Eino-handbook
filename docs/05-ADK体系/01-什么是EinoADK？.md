@@ -1,6 +1,6 @@
 ﻿# AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？
 
-> GitHub 主文：[当前文章](./01-什么是Eino ADK？.md)
+> GitHub 主文：[当前文章](./01-什么是EinoADK？.md)
 > CSDN 跳转：[AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？](https://zhumo.blog.csdn.net/article/details/159656025)
 > 官方文档：[Eino ADK 概述](https://www.cloudwego.io/zh/docs/eino/core_modules/eino_adk/agent_preview/)
 >
@@ -691,7 +691,7 @@ assistant>
 
 ## 发布说明
 
-- GitHub 主文：[AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？](./01-什么是Eino ADK？.md)
+- GitHub 主文：[AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？](./01-什么是EinoADK？.md)
 - CSDN 跳转：[AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？](https://zhumo.blog.csdn.net/article/details/159656025)
 - 官方文档：[Eino ADK 概述](https://www.cloudwego.io/zh/docs/eino/core_modules/eino_adk/agent_preview/)
 - 最新版以 GitHub 仓库为准。

@@ -224,7 +224,7 @@
   },
   {
     "source": "组件核心/AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser.md",
-    "dest": "03-组件核心/05-为什么很多人会用Document Loader，却没真正看懂Parser.md",
+    "dest": "03-组件核心/05-为什么很多人会用DocumentLoader，却没真正看懂Parser.md",
     "title": "AI 大模型落地系列｜Eino 组件核心篇：为什么很多人会用 Document Loader，却没真正看懂 Parser",
     "summary": "把文档进入 RAG 前的加载、解析、结构化协议拆成 Loader 和 Parser 两层来看。",
     "audience": "准备搭建文档 ingestion 链路，或想把 RAG 入库前半段讲清楚的读者。",
@@ -346,7 +346,7 @@
   },
   {
     "source": "ADK体系/AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？.md",
-    "dest": "05-ADK体系/01-什么是Eino ADK？.md",
+    "dest": "05-ADK体系/01-什么是EinoADK？.md",
     "title": "AI 大模型落地系列｜Eino ADK体系篇：什么是 Eino ADK？",
     "summary": "从概念总览切入，把 ADK 放回 Agent 开发套件而不是单个接口的层级来理解。",
     "audience": "已经接触过基础组件，准备系统进入 Agent 开发体系的读者。",

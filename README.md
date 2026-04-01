@@ -1,10 +1,26 @@
 # Go Eino 中文学习手册
 
-面向中文开发者的 CloudWeGo Eino 学习仓，提供体系化阅读路径、可运行 Go 示例，以及适合面试表达的结构化笔记。
+面向中文开发者的 CloudWeGo Eino 学习仓，提供系统教程、可运行 Go 示例，以及适合面试与技术分享的表达框架。
+
+`19 篇正文 + 1 篇总纲 + 5 个可运行 demo`
+
+关键词：`CloudWeGo Eino`、`Go`、`AI Agent`、`RAG`、`Workflow`、`ADK`
 
 ## 一句话定位
 
 如果你想系统学 Eino、快速跑通关键能力，并顺手沉淀一套可以讲给面试官或团队同事听的表达框架，这个仓库就是为你准备的。
+
+## 你会在这里得到什么
+
+- 一条从 `ChatModel -> Tool -> Chain / Graph -> ADK` 逐步推进的系统学习主线。
+- 一组可以直接运行的 Go 示例，用来验证理解、录屏展示和排查概念误区。
+- 一套适合面试、技术分享和项目复盘的四层表达框架。
+
+## 适合谁看
+
+- 想系统学习 CloudWeGo Eino，而不是零散看 API 的 Go 开发者。
+- 已经能调模型，但想把 Tool、RAG、编排和 Agent 边界讲清楚的工程师。
+- 准备做 AI Agent 相关面试展示、内部分享或知识沉淀的人。
 
 ## 快速开始
 
@@ -74,13 +90,19 @@ go run ./chatmodel-message -- "用一句话解释 Eino 的 Component 设计"
 
 ### 总纲
 
+先用总纲建立学习地图，知道整套内容为什么这样分层、应该按什么顺序推进。
+
 - [`Go Eino 学习总纲`](docs/00-学习总纲.md)
 
 ### 前置基础
 
+先把 Agent、Tool、Function Calling、MCP、RAG 放回同一张工程认知图里，避免后面只背名词。
+
 - [`学习 AI 前需具备的基础知识`](docs/01-前置基础/01-学习AI前需具备的基础知识.md)
 
 ### 入门必学
+
+这一段先跑通最关键的执行闭环：模型调用、Agent 运行、多轮会话、工具访问和可观测性。
 
 - [`一文读懂 Eino 的 ChatModel 和 Message`](docs/02-入门必学/01-ChatModel和Message.md)
 - [`一文读懂 ChatModelAgent、Runner、AgentEvent（Console 多轮）`](docs/02-入门必学/02-ChatModelAgent、Runner、AgentEvent（Console多轮）.md)
@@ -90,15 +112,19 @@ go run ./chatmodel-message -- "用一句话解释 Eino 的 Component 设计"
 
 ### 组件核心
 
+这一段重点理解组件边界和协议层，不再把 `ChatModel`、`Tool`、`Retriever` 当成孤立功能点。
+
 - [`为什么很多人把 ChatModel 想简单了`](docs/03-组件核心/01-为什么很多人把ChatModel想简单了.md)
 - [`ChatTemplate 为什么不是字符串拼接`](docs/03-组件核心/02-ChatTemplate为什么不是字符串拼接.md)
 - [`Embedding 到底解决了什么`](docs/03-组件核心/03-Embedding到底解决了什么.md)
 - [`为什么很多人会写 Tool，却没真正看懂 ToolsNode`](docs/03-组件核心/04-为什么很多人会写Tool，却没真正看懂ToolsNode.md)
-- [`为什么很多人会用 Document Loader，却没真正看懂 Parser`](docs/03-组件核心/05-为什么很多人会用Document Loader，却没真正看懂Parser.md)
+- [`为什么很多人会用 Document Loader，却没真正看懂 Parser`](docs/03-组件核心/05-为什么很多人会用DocumentLoader，却没真正看懂Parser.md)
 - [`为什么很多人会用 Indexer，却没真正看懂 Store`](docs/03-组件核心/06-为什么很多人会用Indexer，却没真正看懂Store.md)
 - [`为什么很多人会用 Retriever，却没真正看懂 Retrieve`](docs/03-组件核心/07-为什么很多人会用Retriever，却没真正看懂Retrieve.md)
 
 ### 编排进阶
+
+当组件能力看懂之后，再进入更复杂的执行关系、控制流和人工接管问题。
 
 - [`一文讲透编排（Chain 与 Graph）`](docs/04-编排进阶/01-一文讲透编排（Chain与Graph）.md)
 - [`既然有了 Chain、Graph，为何还需要 Workflow`](docs/04-编排进阶/02-既然有了Chain、Graph，为何还需要Workflow.md)
@@ -106,7 +132,9 @@ go run ./chatmodel-message -- "用一句话解释 Eino 的 Component 设计"
 
 ### ADK 体系
 
-- [`什么是 Eino ADK？`](docs/05-ADK体系/01-什么是Eino ADK？.md)
+这部分放在后面，是因为它讨论的是更高一层的 Agent 抽象、协作方式和扩展能力。
+
+- [`什么是 Eino ADK？`](docs/05-ADK体系/01-什么是EinoADK？.md)
 - [`为什么一定要有 Agent 这层抽象`](docs/05-ADK体系/02-为什么一定要有Agent这层抽象.md)
 - [`你对 ChatModelAgent 有了解吗？`](docs/05-ADK体系/03-你对ChatModelAgent有了解吗？.md)
 
@@ -124,5 +152,6 @@ go run ./chatmodel-message -- "用一句话解释 Eino 的 Component 设计"
 ## 发布设置
 
 - GitHub 仓库名建议：`go-eino-handbook`
-- GitHub 描述、topics、release 节奏等说明见 [`docs/仓库发布设置.md`](docs/仓库发布设置.md)
+- GitHub About 的 `Description / Website / Topics` 可复制内容见 [`docs/仓库发布设置.md`](docs/仓库发布设置.md)
+- 这些字段不会自动从 README 同步到 GitHub 仓库设置，需要到仓库右侧 About 面板手动填写
 - 文档重建脚本：[`tools/rebuild-docs.ps1`](tools/rebuild-docs.ps1)
